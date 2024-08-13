@@ -1,7 +1,9 @@
+import Feed from "@/components/Feed";
 import LeftSidebar from "@/components/LeftSidebar";
 import Login from "@/components/Login";
 import Navbar from "@/components/Navbar";
 import RightSidebar from "@/components/RightSidebar";
+import Story from "@/components/Story";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 
@@ -36,6 +38,7 @@ function Home() {
         <Navbar />
         <LeftSidebar />
         <RightSidebar/>
+        <Feed/>
       </main>
     </>
   );

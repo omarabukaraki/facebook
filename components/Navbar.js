@@ -5,11 +5,12 @@ import { IoStorefrontOutline } from "react-icons/io5";
 import { CgMenuGridO } from "react-icons/cg";
 import { BsMessenger } from "react-icons/bs";
 import { IoNotifications } from "react-icons/io5";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import userImage from "@/public/profile_placeholder.png"
+import ProfileMenu from "./ProfileMenu";
 
 const Navbar = () => {
-    const { data: session } = useSession();
+    const { data: session ,data:token} = useSession();
 
     return (
 
@@ -53,17 +54,8 @@ const Navbar = () => {
                     <IoNotifications />
                 </div>
 
-                <img
-                    className="w-8 mr-4 cursor-pointer rounded-full"
-                    src={session?.user?.image  !== undefined ? session?.user?.image  : userImage.src}
-                    alt="user"
-                    onClick={signOut}
-                />
+                <ProfileMenu image={userImage.src} userName={session?.user?.name}/>
             </div>
-
-
-
-
 
         </div>
 
@@ -73,3 +65,7 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+
+
+
