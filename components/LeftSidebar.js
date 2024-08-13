@@ -8,7 +8,7 @@ const LeftSidebar = () => {
 
 
   return (
-    <div className="px-4 fixed mt-5 hidden lg:block">
+    <div className="px-4 fixed hidden lg:block">
       <div className="flex flex-col gap-2">
         <LeftSidebarLink
           image={session?.user?.image  !== undefined ? session?.user?.image  : userImage.src}

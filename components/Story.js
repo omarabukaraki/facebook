@@ -39,7 +39,7 @@ const Story = () => {
     ];
 
     return (
-        <div>
+        <div className="w-8/12"> 
             <div className="flex gap-[10px] mt-5 pb-5 overflow-x-scroll no-scrollbar">
                 <div className="w-[112px] shadow-md rounded-[15px] pb-2 shrink-0">
                     <img

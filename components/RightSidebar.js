@@ -7,7 +7,7 @@ import Contact from "@/components/Contact";
 
 const RightSidebar = () => {
   return (
-    <div className="fixed hidden xl:block top-16 right-0 w-[300px] mt-6 px-4 h-screen overflow-y-scroll">
+    <div className="fixed hidden xl:block top-12 right-0 w-[300px] mt-6 px-4 h-screen overflow-y-scroll no-scrollbar">
       <div>
         <div className="flex justify-between">
           <h1 className="font-semibold text-gray-600 text-[18px]">
