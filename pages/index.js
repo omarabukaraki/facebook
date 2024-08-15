@@ -8,6 +8,8 @@ import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 
 
+
+
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
@@ -37,7 +39,7 @@ function Home() {
       <main>
         <Navbar />
         <LeftSidebar />
-        <RightSidebar/>
+        <RightSidebar />
         <Feed/>
       </main>
     </>

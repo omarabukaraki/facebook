@@ -12,21 +12,21 @@ import { PiShareFatLight } from "react-icons/pi";
 import { MdOutlineClose } from "react-icons/md";
 
 
-const Post = () => {
+const Post = ({caption, image,uImage,uName}) => {
     return (
         <div className='bg-white rounded-2xl  mb-4 w-8/12'>
             <div className="flex place-items-center px-6 pt-6">
-                <img className="w-11 h-11 rounded-full mr-2" src={userImage.src} />
+                <img className="w-11 h-11 rounded-full mr-2" src={uImage} />
                 <div>
-                    <h3 className="font-bold">The Brave Coders</h3>
+                    <h3 className="font-bold">{uName}</h3>
                     <p className="flex place-items-center text-gray-500">1 d <LuDot /> <TiWorld className="text-lg" /></p>
                 </div>
             </div>
 
-            <h3 className="px-6 pt-4">FullStack development is fun </h3>
+            <h3 className="px-6 pt-4">{caption}</h3>
 
             <div className="w-full h-80 my-3">
-               <img src={postImage.src} className="w-full h-full"/>
+            <img src={image} className="w-full h-full"/>
             </div>
 
             <div className="h-[0.1rem] bg-gray-300 my-3 mx-6"></div>

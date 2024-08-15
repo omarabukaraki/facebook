@@ -53,7 +53,7 @@ const Navbar = () => {
                 <IoNotifications />
             </div>
 
-            <ProfileMenu image={userImage.src} userName={session?.user?.name}/>
+            <ProfileMenu image={session?.user?.image} userName={session?.user?.name}/>
         </div>
 
     </div>

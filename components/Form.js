@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { signIn, useSession } from 'next-auth/react';
 
 
 const FormSchema = z.object({
@@ -23,7 +24,7 @@ const FormSchema = z.object({
 });
 
 export function InputForm() {
-    
+
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -33,7 +34,14 @@ export function InputForm() {
   });
 
   const onSubmit = (data) => {
-    console.log(JSON.stringify(data, null, 2));
+    console.log(data.email)
+    signIn('credentials',{
+      email:data.email,
+      password:data.password,
+      redirect:false
+    });
+    
+    console.log(JSON.stringify(data.password, null, 2));
   };
 
   return (

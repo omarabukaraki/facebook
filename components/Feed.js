@@ -3,39 +3,50 @@ import React, { useEffect, useState } from "react";
 import Story from "@/components/Story";
 import WhatOnYouMind from "./WhatOnYouMind";
 import Post from "./Post";
-// import WhatsOnYourMind from "./WhatsOnYourMind";
-// import Post from "./Post";
-// import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-// import { db } from "../firebase";
+
+
+
 
 const Feed = () => {
-//   const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [test, setTest] = useState(null);
 
-//   useEffect(() =>
-//     onSnapshot(
-//       query(collection(db, "posts"), orderBy("timestamp", "desc")),
-//       (snapshot) => {
-//         setPosts(snapshot.docs);
-//       }
-//     )
-//   );
+  useEffect(() => {
+    fetch('http://localhost:3000/api/user')
+      .then(resp => resp.json())
+      .then(result => {
+        setUsers(result)
+      })
+  }, []
+  );
 
-const arr = [{},{},{},{},{},{},]
+  useEffect(() => {
+    let dd = localStorage.getItem('userPosts');
+    setTest(JSON.parse(dd))
+  }, [])
+
 
   return (
     <div className="flex flex-col items-center mx-auto mt-14 max-w-[600px] 2xl:max-w-[800px] mb-10">
       <Story />
-      <WhatOnYouMind/>
-      {arr.map(p=>{
-        return <Post/>
-      })}
-      
-      {/* <WhatsOnYourMind />
-      {posts.map((post) => {
-        return <Post key={post.id} id={post.id} data={post.data()} />;
-      })} */}
+      <WhatOnYouMind />
+      {/* {<Post image={dataPost?.image || ''} caption={dataPost?.caption || 'omar'} uImage={dataPost?.image || ''} uName={dataPost?.name || ''} />} */}
+      {users && users.length !== 0 ? users.map((user) => {
+        return user.posts.map((post, index) => {
+          return <Post key={index} image={post.image} caption={post.caption} uImage={user.image} uName={user.name} />
+        })
+      }) : null
+      }
     </div>
   );
 };
 
 export default Feed;
+
+
+
+
+
+
+
+

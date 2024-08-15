@@ -2,39 +2,101 @@ import userImage from "@/public/profile_placeholder.png"
 import { IoVideocamSharp } from "react-icons/io5";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { GoSmiley } from "react-icons/go";
-import { MdOutlineClose } from "react-icons/md";
+import { useEffect, useRef, useState } from "react";
 
 const WhatOnYouMind = () => {
+    const fPicker = useRef(null);
+    const caption = useRef(null);
+    const btn = useRef(null);
+    const [selectedFile, setSelectedFile] = useState(null);
+
+
+    const addImageToPost = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            setSelectedFile(imageUrl);
+        }
+    };
+
+    useEffect(() => {
+        return () => {
+            if (selectedFile) {
+             URL.revokeObjectURL(selectedFile);
+            }
+        };
+    }, [selectedFile]);
+
+    const handleButton = () => {
+        if (caption.current.value !== '' || selectedFile !== null) {
+            btn.current.className = "bg-blue-600 w-full h-9 mt-4 rounded-md text-white";
+        } else {
+            btn.current.className = "bg-gray-300 w-full h-9 mt-4 rounded-md";
+        }
+    }
+
+  
     return (
         <div className='bg-white rounded-2xl p-6 mb-4 w-8/12'>
             <div className="flex">
                 <img className="w-11 h-11 rounded-full" src={userImage.src} />
-                <input className="w-full pl-4 text-base placeholder:text-gray-500" placeholder="What's on your mind?" />
+                <input onChange={handleButton} ref={caption} className="w-full pl-4 text-base placeholder:text-gray-500" placeholder="What's on your mind?" />
             </div>
 
             <div className="w-full h-[0.1rem] bg-gray-300 my-3"></div>
             <div className="flex justify-between">
+
                 <div className="flex place-items-center p-2">
                     <IoVideocamSharp className="text-2xl text-red-600" />
                     <h3 className="ml-2 text-gray-700 ">Live Video</h3>
                 </div>
 
-                <button>
-                    <div className="flex place-items-center p-2">
-                        <MdOutlinePhotoLibrary className="text-2xl text-green-600" />
-                        <h3 className="ml-2 text-gray-700">Photo/Video</h3>
+                <label htmlFor="filePicker">
+                    <div className="flex items-center gap-2 p-2 cursor-pointer">
+                        <MdOutlinePhotoLibrary className="text-green-600 text-2xl" />
+                        <p className="text-gray-500 font-medium">Photo/video</p>
                     </div>
-                </button>
+                    <input
+                        type="file"
+                        name="filePicker"
+                        id="filePicker"
+                        accept="image/*"
+                        onChange={addImageToPost}
+                        ref={fPicker}
+                        hidden
+                    />
+                </label>
 
                 <div className="flex place-items-center p-2">
                     <GoSmiley className="text-2xl text-yellow-500" />
                     <h3 className="ml-2 text-gray-700">Feeling/Activity</h3>
                 </div>
+
+
             </div>
 
-            <button className="bg-gray-300 w-full h-9 mt-4 rounded-md">Post</button>
+            <button ref={btn} onClick={() => {
+
+
+                if (caption.current.value !== '') {
+                    localStorage.setItem('userPosts', JSON.stringify([{
+                        "id": 1,
+                        "caption": caption.current.value,
+                        "image": 'https://images.pexels.com/photos/1102260/pexels-photo-1102260.jpeg',
+                        "userData":{
+                            "image":"",
+                            "name":"",
+                        }
+                    }]))
+                } else {
+                    alert('there is no data')
+                }
+            }} className="bg-gray-300 w-full h-9 mt-4 rounded-md">Post</button>
         </div>
     )
 }
 
 export default WhatOnYouMind
+
+
+
