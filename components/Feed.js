@@ -29,11 +29,11 @@ const Feed = () => {
   return (
     <div className="flex flex-col items-center mx-auto mt-14 max-w-[600px] 2xl:max-w-[800px] mb-10">
       <Story />
-      <WhatOnYouMind />
+      <WhatOnYouMind width={'w-8/12'} />
       {/* {<Post image={dataPost?.image || ''} caption={dataPost?.caption || 'omar'} uImage={dataPost?.image || ''} uName={dataPost?.name || ''} />} */}
       {users && users.length !== 0 ? users.map((user) => {
         return user.posts.map((post, index) => {
-          return <Post key={index} image={post.image} caption={post.caption} uImage={user.image} uName={user.name} />
+          return <Post width={'w-8/12'} key={index} uId={user.id} image={post.image} caption={post.caption} uImage={user.image} uName={user.name} />
         })
       }) : null
       }

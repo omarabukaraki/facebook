@@ -2,9 +2,11 @@
 import { AiOutlinePlus } from "react-icons/ai";
 import SingleStory from "@/components/SingleStory";
 import userImage from "@/public/profile_placeholder.png"
+import { useSession } from "next-auth/react";
 
 
 const Story = () => {
+    const {data : session } = useSession()
     const singleStoryData = [
         {
             title: "Bill Gates",
@@ -44,7 +46,7 @@ const Story = () => {
                 <div className="w-[112px] shadow-md rounded-[15px] pb-2 shrink-0">
                     <img
                         className="w-[112px] h-[151px] rounded-t-[15px] object-cover"
-                        src={userImage.src}
+                        src={JSON.parse(session?.user?.name).image  !== undefined ? JSON.parse(session?.user?.name).image  : userImage.src}
                         alt="user"
                     />
                     <div>

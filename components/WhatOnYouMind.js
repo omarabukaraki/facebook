@@ -1,10 +1,11 @@
-import userImage from "@/public/profile_placeholder.png"
 import { IoVideocamSharp } from "react-icons/io5";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { GoSmiley } from "react-icons/go";
 import { useEffect, useRef, useState } from "react";
+import { useSession } from "next-auth/react";
 
-const WhatOnYouMind = () => {
+const WhatOnYouMind = ({width,uImage}) => {
+    const {data :session} = useSession()
     const fPicker = useRef(null);
     const caption = useRef(null);
     const btn = useRef(null);
@@ -35,11 +36,12 @@ const WhatOnYouMind = () => {
         }
     }
 
-  
+    const userImage = session?.user?.name !== undefined ? JSON.parse(session?.user?.name).image : '';
+
     return (
-        <div className='bg-white rounded-2xl p-6 mb-4 w-8/12'>
+        <div className={`bg-white rounded-2xl p-6 mb-4 ${width} border-[0.01rem] border-gray-300`}>
             <div className="flex">
-                <img className="w-11 h-11 rounded-full" src={userImage.src} />
+                <img className="w-11 h-11 rounded-full object-cover" src={userImage} />
                 <input onChange={handleButton} ref={caption} className="w-full pl-4 text-base placeholder:text-gray-500" placeholder="What's on your mind?" />
             </div>
 

@@ -11,8 +11,8 @@ const LeftSidebar = () => {
     <div className="px-4 fixed hidden lg:block">
       <div className="flex flex-col gap-2">
         <LeftSidebarLink
-          image={session?.user?.image  !== undefined ? session?.user?.image  : userImage.src}
-          text={session?.user?.name}
+          image={JSON.parse(session?.user?.name).image  !== undefined ? JSON.parse(session?.user?.name).image  : userImage.src}
+          text={JSON.parse(session?.user?.name).name}
         />
         <LeftSidebarLink image="/friends.png" text="Friends" />
         <LeftSidebarLink image="/group.png" text="Groups" />

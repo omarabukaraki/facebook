@@ -1,30 +1,3 @@
-// import NextAuth from "next-auth"
-// import GoogleProvider from "next-auth/providers/google"
-
-// export const authOptions = {
-//   providers: [
-//     GoogleProvider({
-//       clientId: process.env.GOOGLE_ID,
-//       clientSecret: process.env.GOOGLE_SECRET,
-//     }),
-//   ],
-//   session:{
-//     strategy: 'jwt',
-//     maxAge: 1* 24 * 60 * 60,
-//     updateAge: 24 * 60 * 60,
-//   },
-//   jwt:{
-//   },
-// }
-
-// export default NextAuth(authOptions)
-
-
-
-
-
-
-
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -40,29 +13,47 @@ export const authOptions = {
       credentials: {
       },
       async authorize(credentials) {
-        const {email, password} = credentials;
-        
-        if(email !== 'abukarakiomar@gmail.com' || password !=='omar2002'){
-          throw('error')
+        const { email, password } = credentials;
+
+        if (email !== 'abukarakiomar@gmail.com' || password !== 'omar2002') {
+          throw ('error')
         }
 
-        return {id:'101',name:'omar abdulaziz',email:'abukarakiomar@gmail.com',image:'https://i.ibb.co/2vvff1F/111639963.jpg'}
+        return {
+          "id": 0,
+          "name": JSON.stringify({
+            "name": "omar abdulaziz",
+            "email": "abukarakiomar@gmail.com",
+            "image": "https://i.ibb.co/2vvff1F/111639963.jpg",
+            "coverImage": "https://images.pexels.com/photos/276551/pexels-photo-276551.jpeg",
+            "description": "Photographer and nature lover.",
+            "posts": [
+              {
+                "id": 1,
+                "caption": "Fun DIY craft project for kids.",
+                "image": "https://images.pexels.com/photos/276551/pexels-photo-276551.jpeg",
+                "time": "2024-08-14T15:00:00Z"
+              },
+              {
+                "id": 2,
+                "caption": "Creative home decor ideas.",
+                "image": "https://images.pexels.com/photos/1118664/pexels-photo-1118664.jpeg",
+                "time": "2024-08-13T13:30:00Z"
+              }
+            ]
+          }),
+        }
       },
     }),
   ],
   session: {
     strategy: 'jwt',
-    maxAge: 1 * 24 * 60 * 60, 
-    updateAge: 24 * 60 * 60, 
+    maxAge: 1 * 24 * 60 * 60,
+    updateAge: 24 * 60 * 60,
   },
   jwt: {
   },
-  // pages: {
-  //   signIn: '/auth/signin',  
-  //   error: '/auth/error',    
-  //   verifyRequest: '/auth/verify-request', 
-  //   newAccount: '/auth/new-account', 
-  // },
+
   callbacks: {
     async jwt({ token, user }) {
       if (user) {

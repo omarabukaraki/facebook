@@ -28,7 +28,7 @@ const ProfileMenu = ({ image, userName }) => {
     const router = useRouter();
 
     if (position === 'Profile') {
-        router.push('/profile');
+        router.push('/my_profile');
     } else if (position === 'Logout') {
         signOut();
     }

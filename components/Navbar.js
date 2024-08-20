@@ -13,7 +13,7 @@ const Navbar = () => {
     const { data: session ,data:token} = useSession();
 
     return (
-        <div className='fixed top-0 left-0 right-0 h-12 flex justify-between  items-center shadow-md bg-white'>
+        <div className='fixed z-50 top-0 left-0 right-0 h-12 flex justify-between  items-center shadow-md bg-white'>
         <div className="flex gap-2">
             <FaFacebook className="text-3xl text-blue-600 ml-4" />
             <div className="h-8 w-52 rounded-3xl bg-gray-200 flex justify-center place-items-center">
@@ -53,7 +53,7 @@ const Navbar = () => {
                 <IoNotifications />
             </div>
 
-            <ProfileMenu image={session?.user?.image} userName={session?.user?.name}/>
+            <ProfileMenu image={JSON.parse(session?.user?.name).image} userName={JSON.parse(session?.user?.name).name}/>
         </div>
 
     </div>
