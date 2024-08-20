@@ -13,19 +13,17 @@ import Link from "next/link";
 
 
 const Post = ({caption, image,uImage,uName,uId,width}) => {
+    let path = uId !== undefined ? `/profile/${uId}` : '/my_profile';
+
     return (
         <div className={`bg-white rounded-2xl mb-4 ${width} border-[0.01rem] border-gray-300`}>
-            <Link href={`/profile/${uId}`} className="flex place-items-center px-6 pt-6">
+            <Link href={path} className="flex place-items-center px-6 pt-6">
             <img className="w-11 h-11 rounded-full mr-2 object-cover" src={uImage} />
                 <div>
                     <h3 className="font-bold">{uName}</h3>
                     <p className="flex place-items-center text-gray-500">1 d <LuDot /> <TiWorld className="text-lg" /></p>
                 </div>
             </Link>
-            {/* <div className="flex place-items-center px-6 pt-6">
-               
-            </div> */}
-
             <h3 className="px-6 pt-4">{caption}</h3>
 
             <div className="w-full h-80 my-3">

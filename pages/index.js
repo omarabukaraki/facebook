@@ -11,15 +11,17 @@ import Head from "next/head";
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-
+  const res = await fetch('http://localhost:3000/api/user');
+  const data = await res.json();
   return {
     props: {
       session,
+      data
     }
   }
 }
 
-function Home() {
+function Home({data}) {
 
   const { data: session } = useSession();
 
@@ -34,12 +36,11 @@ function Home() {
       <Head>
         <title>Facebook</title>
       </Head>
-
       <main>
         <Navbar />
         <LeftSidebar />
         <RightSidebar />
-        <Feed/>
+        <Feed data={data}/>
       </main>
     </>
   );

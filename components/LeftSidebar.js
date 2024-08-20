@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react"
 import LeftSidebarLink from "./LeftSidebarLink"
 import userImage from "@/public/profile_placeholder.png"
 import { BsChevronDown } from "react-icons/bs";
+import Link from "next/link";
 
 const LeftSidebar = () => {
    const {data: session} = useSession()
@@ -10,10 +11,12 @@ const LeftSidebar = () => {
   return (
     <div className="px-4 fixed hidden lg:block">
       <div className="flex flex-col gap-2">
-        <LeftSidebarLink
+         <Link href={'/my_profile'}>
+         <LeftSidebarLink
           image={JSON.parse(session?.user?.name).image  !== undefined ? JSON.parse(session?.user?.name).image  : userImage.src}
           text={JSON.parse(session?.user?.name).name}
         />
+         </Link>
         <LeftSidebarLink image="/friends.png" text="Friends" />
         <LeftSidebarLink image="/group.png" text="Groups" />
         <LeftSidebarLink image="/market.png" text="Marketplace" />

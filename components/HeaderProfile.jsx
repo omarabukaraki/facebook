@@ -13,7 +13,7 @@ const HeaderProfile = ({ isOwnerProfile, userData }) => {
                 <div className='flex justify-between '>
                     <div className='flex justify-between'>
                         <img src={userData.image} className='w-44 h-44 rounded-full border-4 border-white object-cover' />
-                        <h1 className='flex items-end text-3xl font-bold pb-4 pl-5'>{userData.name}</h1>
+                        <h1 className='flex items-end text-2xl font-bold pb-4 pl-5'>{userData.name}</h1>
                     </div>
 
                     <div className="flex flex-col justify-between place-items-end w-5/12">

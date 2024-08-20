@@ -11,6 +11,7 @@ import ProfileMenu from "./ProfileMenu";
 
 const Navbar = () => {
     const { data: session ,data:token} = useSession();
+    const userData = session?.user?.name !== undefined ? JSON.parse(session?.user?.name) : session?.user;
 
     return (
         <div className='fixed z-50 top-0 left-0 right-0 h-12 flex justify-between  items-center shadow-md bg-white'>
@@ -53,7 +54,7 @@ const Navbar = () => {
                 <IoNotifications />
             </div>
 
-            <ProfileMenu image={JSON.parse(session?.user?.name).image} userName={JSON.parse(session?.user?.name).name}/>
+            <ProfileMenu image={userData.image} userName={userData.name}/>
         </div>
 
     </div>

@@ -3,35 +3,21 @@ import React, { useEffect, useState } from "react";
 import Story from "@/components/Story";
 import WhatOnYouMind from "./WhatOnYouMind";
 import Post from "./Post";
+import { useSession } from "next-auth/react";
 
 
 
 
-const Feed = () => {
-  const [users, setUsers] = useState([]);
-  const [test, setTest] = useState(null);
-
-  useEffect(() => {
-    fetch('http://localhost:3000/api/user')
-      .then(resp => resp.json())
-      .then(result => {
-        setUsers(result)
-      })
-  }, []
-  );
-
-  useEffect(() => {
-    let dd = localStorage.getItem('userPosts');
-    setTest(JSON.parse(dd))
-  }, [])
-
+const Feed = ({ data }) => {
+  const { data: session } = useSession();
+  const userData = JSON.parse(session?.user?.name);
+  const finalData = data.concat(userData);
 
   return (
     <div className="flex flex-col items-center mx-auto mt-14 max-w-[600px] 2xl:max-w-[800px] mb-10">
       <Story />
       <WhatOnYouMind width={'w-8/12'} />
-      {/* {<Post image={dataPost?.image || ''} caption={dataPost?.caption || 'omar'} uImage={dataPost?.image || ''} uName={dataPost?.name || ''} />} */}
-      {users && users.length !== 0 ? users.map((user) => {
+      {finalData && finalData.length !== 0 ? finalData.map((user) => {
         return user.posts.map((post, index) => {
           return <Post width={'w-8/12'} key={index} uId={user.id} image={post.image} caption={post.caption} uImage={user.image} uName={user.name} />
         })
@@ -42,7 +28,6 @@ const Feed = () => {
 };
 
 export default Feed;
-
 
 
 
