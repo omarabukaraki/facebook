@@ -18,8 +18,8 @@ const MyProfile = () => {
         <PersonalInformation isOwnerProfile={true} />
         <div className='w-[55%] flex flex-col'>
           <WhatOnYouMind uImage={userData.image} width={'w-full'} />
-          {userData?.posts?.map(post => {
-            return <Post width={'w-full'} image={post.image} uImage={userData.image} uName={userData.name} caption={post.caption} />
+          {userData?.posts?.map((post,index) => {
+            return <Post key={index} width={'w-full'} image={post.image} uImage={userData.image} uName={userData.name} caption={post.caption} />
           })}
         </div>
       </div>

@@ -5,7 +5,7 @@ import PersonalInformation from '@/components/PersonalInformation';
 import Navbar from "@/components/Navbar";
 
 
-const profile = ({ users }) => {
+const Profile = ({ users }) => {
 
   const route = useRouter();
   const userData = users[route.query.index - 1];
@@ -28,7 +28,7 @@ const profile = ({ users }) => {
   )
 }
 
-export default profile
+export default Profile
 
 export async function getStaticProps(context) {
   const res = await fetch('http://localhost:3000/api/user');
@@ -53,3 +53,5 @@ export async function getStaticPaths() {
     fallback: false
   };
 }
+
+
