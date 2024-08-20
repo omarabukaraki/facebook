@@ -1,4 +1,5 @@
 import HeaderProfile from "@/components/HeaderProfile"
+import Navbar from "@/components/Navbar";
 import PersonalInformation from "@/components/PersonalInformation";
 import Post from "@/components/Post";
 import WhatOnYouMind from "@/components/WhatOnYouMind";
@@ -9,7 +10,9 @@ const MyProfile = () => {
   const userData = JSON.parse(session?.user?.name !== undefined ? session?.user?.name : '{}');
   console.log(userData)
   return (
-    <div className='flex flex-col place-items-center '>
+  <>
+  <Navbar isSubNav={true}/>
+  <div className='flex flex-col place-items-center '>
       <HeaderProfile isOwnerProfile={true} userData={userData} />
       <div className='mt-10 flex justify-between w-7/12'>
         <PersonalInformation isOwnerProfile={true} />
@@ -21,6 +24,7 @@ const MyProfile = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

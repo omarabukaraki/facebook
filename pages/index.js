@@ -37,7 +37,7 @@ function Home({data}) {
         <title>Facebook</title>
       </Head>
       <main>
-        <Navbar />
+        <Navbar isSubNav={false} />
         <LeftSidebar />
         <RightSidebar />
         <Feed data={data}/>
