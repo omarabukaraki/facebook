@@ -6,10 +6,9 @@ import RightSidebar from "@/components/RightSidebar";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 
-
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  const res = await fetch('http://localhost:3000/api/user');
+  const res = await fetch(`${process.env.NEXTAUTH_URL}api/user`);
   const data = await res.json();
   return {
     props: {
