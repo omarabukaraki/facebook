@@ -12,7 +12,6 @@ import Link from "next/link";
 
 
 const Navbar = ({ isSubNav }) => {
-    console.log(isSubNav,'*/84984464848846478')
     const { data: session, data: token } = useSession();
     const userData = session?.user?.name !== undefined ? JSON.parse(session?.user?.name) : '';
 

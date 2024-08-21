@@ -7,8 +7,6 @@ import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 
 
-
-
 export async function getServerSideProps(context) {
   const session = await getSession(context);
   const res = await fetch('http://localhost:3000/api/user');
@@ -16,13 +14,12 @@ export async function getServerSideProps(context) {
   return {
     props: {
       session,
-      data
+      data,
     }
   }
 }
 
 function Home({data}) {
-
   const { data: session } = useSession();
 
   if (!session) {
@@ -40,7 +37,7 @@ function Home({data}) {
         <Navbar isSubNav={false} />
         <LeftSidebar />
         <RightSidebar />
-        <Feed data={data}/>
+        <Feed data={data} />
       </main>
     </>
   );

@@ -4,13 +4,14 @@ import { GoSmiley } from "react-icons/go";
 import { useEffect, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 
-const WhatOnYouMind = ({width,uImage}) => {
-    const {data :session} = useSession()
+
+const WhatOnYouMind = ({ width }) => {
+
+    const { data: session } = useSession()
     const fPicker = useRef(null);
     const caption = useRef(null);
     const btn = useRef(null);
     const [selectedFile, setSelectedFile] = useState(null);
-
 
     const addImageToPost = (e) => {
         const file = e.target.files[0];
@@ -23,7 +24,7 @@ const WhatOnYouMind = ({width,uImage}) => {
     useEffect(() => {
         return () => {
             if (selectedFile) {
-             URL.revokeObjectURL(selectedFile);
+                URL.revokeObjectURL(selectedFile);
             }
         };
     }, [selectedFile]);
@@ -35,6 +36,7 @@ const WhatOnYouMind = ({width,uImage}) => {
             btn.current.className = "bg-gray-300 w-full h-9 mt-4 rounded-md";
         }
     }
+
 
     const userImage = session?.user?.name !== undefined ? JSON.parse(session?.user?.name).image : '';
 
@@ -75,26 +77,15 @@ const WhatOnYouMind = ({width,uImage}) => {
                 </div>
 
 
-            </div>
+            </div >
 
-            <button ref={btn} onClick={() => {
-
-
-                if (caption.current.value !== '') {
-                    localStorage.setItem('userPosts', JSON.stringify([{
-                        "id": 1,
-                        "caption": caption.current.value,
-                        "image": 'https://images.pexels.com/photos/1102260/pexels-photo-1102260.jpeg',
-                        "userData":{
-                            "image":"",
-                            "name":"",
-                        }
-                    }]))
-                } else {
-                    alert('there is no data')
-                }
+            <button ref={btn} onClick={()=>{
+                caption.current.value = '';
+                handleButton()
             }} className="bg-gray-300 w-full h-9 mt-4 rounded-md">Post</button>
+
         </div>
+
     )
 }
 
