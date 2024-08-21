@@ -31,7 +31,7 @@ const Profile = ({ users }) => {
 export default Profile
 
 export async function getStaticProps(context) {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}api/user`);
+  const res = await fetch('http://localhost:3000/api/user');
   const users = await res.json();
   return {
     props: {
@@ -41,7 +41,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}api/user`);
+  const res = await fetch('http://localhost:3000/api/user');
   const users = await res.json();
 
   const allUsersPaths = users.map(user => ({
