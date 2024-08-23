@@ -3,12 +3,16 @@ import Post from '@/components/Post';
 import HeaderProfile from '@/components/HeaderProfile';
 import PersonalInformation from '@/components/PersonalInformation';
 import Navbar from "@/components/Navbar";
+import { usersData as usersDataStatic } from '../api/users';
 
 
-const Profile = ({ users }) => {
+
+const Profile = ({ usersDataStatic }) => {
 
   const route = useRouter();
-  const userData = users[route.query.index - 1];
+  let index = route?.query?.index;
+  const userData = usersDataStatic[index - 1];
+  
 
   return (
     <>
@@ -31,20 +35,20 @@ const Profile = ({ users }) => {
 export default Profile
 
 export async function getStaticProps(context) {
-  const res = await fetch('http://localhost:3000/api/user');
-  const users = await res.json();
+  // const res = await fetch('http://localhost:3001/api/user');
+  // const users = await res.json();
   return {
     props: {
-      users
+      usersDataStatic
     }
   }
 }
 
 export async function getStaticPaths() {
-  const res = await fetch('http://localhost:3000/api/user');
-  const users = await res.json();
-
-  const allUsersPaths = users.map(user => ({
+  // const res = await fetch('http://localhost:3001/api/user');
+  // const users = await res.json();
+  
+  const allUsersPaths = usersDataStatic.map(user => ({
     params: { index: user.id.toString(), value: user }
   }));
 

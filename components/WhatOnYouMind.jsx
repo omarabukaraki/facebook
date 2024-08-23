@@ -43,7 +43,7 @@ const WhatOnYouMind = ({ width }) => {
     return (
         <div className={`bg-white rounded-2xl p-6 mb-4 ${width} border-[0.01rem] border-gray-300`}>
             <div className="flex">
-                <img className="w-11 h-11 rounded-full object-cover" src={userImage} />
+                <img alt="" className="w-11 h-11 rounded-full object-cover" src={userImage} />
                 <input onChange={handleButton} ref={caption} className="w-full pl-4 text-base placeholder:text-gray-500" placeholder="What's on your mind?" />
             </div>
 
@@ -79,7 +79,7 @@ const WhatOnYouMind = ({ width }) => {
 
             </div >
 
-            <button ref={btn} onClick={()=>{
+            <button ref={btn} onClick={() => {
                 caption.current.value = '';
                 handleButton()
             }} className="bg-gray-300 w-full h-9 mt-4 rounded-md">Post</button>

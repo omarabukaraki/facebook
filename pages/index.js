@@ -5,21 +5,24 @@ import Navbar from "@/components/Navbar";
 import RightSidebar from "@/components/RightSidebar";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
+import { usersData } from "./api/users";
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  const res = await fetch('http://localhost:3000/api/user');
-  const data = await res.json();
+  // const res = await fetch('http://localhost:3001/api/user');
+  // const data = await res.json();
+
   return {
     props: {
       session,
-      data,
     }
   }
 }
 
-function Home({data}) {
+function Home() {
   const { data: session } = useSession();
+  const uData = usersData;
+  
 
   if (!session) {
     return <>
@@ -36,7 +39,7 @@ function Home({data}) {
         <Navbar isSubNav={false} />
         <LeftSidebar />
         <RightSidebar />
-        <Feed data={data} />
+        <Feed data={uData} />
       </main>
     </>
   );
