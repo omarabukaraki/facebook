@@ -53,7 +53,7 @@ export const authOptions = {
   },
   jwt: {
   },
-
+  secret:process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn({ account,user }) {
       if(account.provider === 'google'){
