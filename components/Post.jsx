@@ -16,7 +16,7 @@ const Post = ({caption, image,uImage,uName,uId,width}) => {
     let path = uId !== undefined ? `/profile/${uId}` : '/my_profile';
 
     return (
-        <div className={`bg-white rounded-2xl mb-4 ${width} border-[0.01rem] border-gray-300`}>
+        <div className={`bg-white rounded-2xl mb-4 ${width} min-w-[22rem] border-[0.01rem] border-gray-300`}>
             <Link href={path} className="flex place-items-center px-6 pt-6">
             <img alt="" className="w-11 h-11 rounded-full mr-2 object-cover" src={uImage} />
                 <div>

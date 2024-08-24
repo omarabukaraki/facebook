@@ -41,7 +41,7 @@ const WhatOnYouMind = ({ width }) => {
     const userImage = session?.user?.name !== undefined ? JSON.parse(session?.user?.name).image : '';
 
     return (
-        <div className={`bg-white rounded-2xl p-6 mb-4 ${width} border-[0.01rem] border-gray-300`}>
+        <div className={`bg-white rounded-2xl p-6 mb-4 ${width} min-w-[22rem] border-[0.01rem] border-gray-300`}>
             <div className="flex">
                 <img alt="" className="w-11 h-11 rounded-full object-cover" src={userImage} />
                 <input onChange={handleButton} ref={caption} className="w-full pl-4 text-base placeholder:text-gray-500" placeholder="What's on your mind?" />
@@ -56,7 +56,7 @@ const WhatOnYouMind = ({ width }) => {
                 </div>
 
                 <label htmlFor="filePicker">
-                    <div className="flex items-center gap-2 p-2 cursor-pointer">
+                    <div className="flex items-center  gap-0 sm:gap-2 p-2 cursor-pointer">
                         <MdOutlinePhotoLibrary className="text-green-600 text-2xl" />
                         <p className="text-gray-500 font-medium">Photo/video</p>
                     </div>

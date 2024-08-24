@@ -8,8 +8,8 @@ import friendImage from '@/public/frinddd.png'
 const HeaderProfile = ({ isOwnerProfile, userData }) => {
     return (
         <div className='flex justify-center border-b-2 border-gray-200 w-full bg-gradient-to-b  from-[#768692]  via-white to-white pb-56' >
-            <img alt="" src={userData.coverImage} className='w-7/12 h-96 rounded-b-lg relative mb-32' />
-            <div className=' absolute top-72 justify-end px-6 w-7/12'>
+            <img alt="" src={userData.coverImage} className='w-10/12 lg:w-8/12 xl:w-7/12 h-96 rounded-b-lg relative mb-32' />
+            <div className=' absolute top-72 justify-end px-6 w-10/12 lg:w-8/12 xl:w-7/12'>
                 <div className='flex justify-between '>
                     <div className='flex justify-between'>
                         <img alt="" src={userData.image} className='w-44 h-44 rounded-full border-4 border-white object-cover' />

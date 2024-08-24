@@ -14,7 +14,7 @@ const MyProfile = () => {
   <Navbar isSubNav={true}/>
   <div className='flex flex-col place-items-center '>
       <HeaderProfile isOwnerProfile={true} userData={userData} />
-      <div className='mt-10 flex justify-between w-7/12'>
+      <div className='mt-10 flex flex-col md:flex-row justify-between w-10/12 lg:w-8/12 xl:w-7/12'>
         <PersonalInformation isOwnerProfile={true} />
         <div className='w-[55%] flex flex-col'>
           <WhatOnYouMind uImage={userData.image} width={'w-full'} />
