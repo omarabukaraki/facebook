@@ -54,9 +54,9 @@ export const authOptions = {
   jwt: {
   },
   callbacks: {
-    async signIn({ account,user }) {
-      if(account.provider === 'google'){
-        user.name =  JSON.stringify({
+    async signIn({ account, user }) {
+      if (account.provider === 'google') {
+        user.name = JSON.stringify({
           "name": "mohammad ahmad",
           "email": "abukarakiomar@gmail.com",
           "image": "https://i.ibb.co/D4T8mLX/test.jpg",
@@ -68,13 +68,13 @@ export const authOptions = {
               "caption": "Advice for budding entrepreneurs.",
               "image": "https://images.pexels.com/photos/7176368/pexels-photo-7176368.jpeg",
               "time": "2024-08-14T09:30:00Z"
-          },
-          {
+            },
+            {
               "id": 2,
               "caption": "Startup success stories.",
               "image": "https://images.pexels.com/photos/6892934/pexels-photo-6892934.jpeg",
               "time": "2024-08-13T17:45:00Z"
-          },
+            },
             {
               "id": 3,
               "caption": "Fun DIY craft project for kids.",
@@ -83,7 +83,7 @@ export const authOptions = {
             },
           ]
         })
-      }else if(account.provider === 'credentials'){
+      } else if (account.provider === 'credentials') {
         user.name = JSON.stringify({
           "name": "omar abdulaziz",
           "email": "abukarakiomar@gmail.com",
@@ -106,13 +106,13 @@ export const authOptions = {
           ]
         });
       }
-      return true; 
+      return true;
     },
-    async session({ session}) {
+    async session({ session }) {
       return session;
     },
   },
-  secret:process.env.SECRET,
+  secret: process.env.SECRET,
 };
 
 
